@@ -223,3 +223,4 @@ idInfo *strConst(string *val)
   info->flag = constValueFlag;
   return info;
 }
+

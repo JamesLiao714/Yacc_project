@@ -70,6 +70,8 @@ program                 : OBJECT ID
 
 /* Variable&constant declarations */
 
+
+
 opt_var_dec             : var_dec opt_var_dec
                         | const_dec opt_var_dec
                         | 
@@ -319,18 +321,21 @@ simple                  : ID '=' expression
                         {
                           Trace("return");
                         }
+			| PRINT expression
+			| PRINTLN expression
                       
                         ;
 
 block                   : 
                        '{'
                         {
-                          Trace("block");
+                          Trace("----block start----");
                           symbols.push();
                         }
                           opt_var_dec opt_statement
                        '}'
                         {
+                          Trace("----block end----");
                           symbols.dump();
                           symbols.pop();
                         }
@@ -362,7 +367,6 @@ B_or_S                 : simple
 loop                    : WHILE '(' expression ')' B_or_S
                         {
                           Trace("while loop");
-
                           if ($3->type != boolType) yyerror("while condition type error");
                         }
                         | FOR '(' ID '<' '-' INT_CONST TO INT_CONST ')' B_or_S

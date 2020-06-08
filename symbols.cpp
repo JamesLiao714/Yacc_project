@@ -166,7 +166,7 @@ void SymbolTableList::addFuncArg(string id, idInfo info)
   list[top - 1].addFuncArg(id, info);
 }
 
-/* utilities */
+/*value*/
 
 bool isConst(idInfo info)
 {

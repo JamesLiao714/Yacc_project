@@ -3,7 +3,7 @@
 #include <vector>
 
 using namespace std;
-
+//data type
 enum type{
     intType,
     realType,
@@ -13,7 +13,7 @@ enum type{
     arrayType,
     voidType
 };
-
+//id
 enum idFlag {
     constValueFlag,
     constVariableFlag,

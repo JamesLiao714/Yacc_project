@@ -209,6 +209,7 @@ opt_func_dec            : func_dec opt_func_dec
 func_dec                : DEF ID
                         {
                           Trace("method declaration");
+                          cout << *$2 <<endl;
                           idInfo *info = new idInfo();
                           info->flag = functionFlag;
                           info->init = false;

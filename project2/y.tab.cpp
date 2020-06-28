@@ -542,13 +542,13 @@ static const yytype_uint16 yyrline[] =
 {
        0,    60,    60,    59,    75,    76,    77,    81,    92,   104,
      115,   125,   135,   145,   157,   161,   165,   169,   173,   180,
-     184,   188,   192,   196,   204,   205,   210,   209,   230,   231,
-     235,   236,   240,   252,   257,   263,   264,   268,   269,   270,
-     271,   272,   278,   287,   299,   303,   307,   314,   320,   324,
-     325,   331,   330,   345,   351,   360,   361,   367,   372,   388,
-     387,   412,   413,   417,   418,   422,   428,   434,   438,   447,
-     448,   468,   490,   510,   530,   550,   574,   598,   624,   648,
-     675,   698,   708,   721
+     184,   188,   192,   196,   204,   205,   210,   209,   231,   232,
+     236,   237,   241,   253,   258,   264,   265,   269,   270,   271,
+     272,   273,   279,   288,   300,   304,   308,   315,   321,   325,
+     326,   332,   331,   346,   352,   361,   362,   368,   373,   389,
+     388,   413,   414,   418,   419,   423,   429,   435,   439,   448,
+     449,   469,   491,   511,   531,   551,   575,   599,   625,   649,
+     676,   699,   709,   722
 };
 #endif
 
@@ -1773,6 +1773,7 @@ yyreduce:
 #line 210 "parser.y"
     {
                           Trace("method declaration");
+                          cout << *(yyvsp[(2) - (2)].sval) <<endl;
                           idInfo *info = new idInfo();
                           info->flag = functionFlag;
                           info->init = false;
@@ -1783,7 +1784,7 @@ yyreduce:
     break;
 
   case 27:
-#line 220 "parser.y"
+#line 221 "parser.y"
     {
                          
                   
@@ -1793,7 +1794,7 @@ yyreduce:
     break;
 
   case 32:
-#line 241 "parser.y"
+#line 242 "parser.y"
     {
                           idInfo *info = new idInfo();
                           info->flag = variableFlag;
@@ -1805,28 +1806,28 @@ yyreduce:
     break;
 
   case 33:
-#line 253 "parser.y"
+#line 254 "parser.y"
     {
                           symbols.setFuncType((yyvsp[(2) - (2)].type));
                         }
     break;
 
   case 34:
-#line 257 "parser.y"
+#line 258 "parser.y"
     {
                           symbols.setFuncType(voidType);
                         }
     break;
 
   case 41:
-#line 273 "parser.y"
+#line 274 "parser.y"
     {
                             if((yyvsp[(1) - (1)].info) != NULL) yyerror("procedure invocation should not have return value"); 
                         }
     break;
 
   case 42:
-#line 279 "parser.y"
+#line 280 "parser.y"
     {
                           Trace(" variable assignment");
                           idInfo *info = symbols.lookup(*(yyvsp[(1) - (3)].sval));
@@ -1838,7 +1839,7 @@ yyreduce:
     break;
 
   case 43:
-#line 288 "parser.y"
+#line 289 "parser.y"
     {
                           Trace("Array assignment");
 
@@ -1853,21 +1854,21 @@ yyreduce:
     break;
 
   case 44:
-#line 300 "parser.y"
+#line 301 "parser.y"
     {
                           Trace("print(expression)");
                         }
     break;
 
   case 45:
-#line 304 "parser.y"
+#line 305 "parser.y"
     {
                           Trace("println(expression)");
                         }
     break;
 
   case 46:
-#line 308 "parser.y"
+#line 309 "parser.y"
     {
                           Trace("return expression");
 
@@ -1877,7 +1878,7 @@ yyreduce:
     break;
 
   case 47:
-#line 315 "parser.y"
+#line 316 "parser.y"
     {
                           idInfo *info = symbols.lookup(*(yyvsp[(2) - (2)].sval));
                           if (info == NULL) yyerror("symbol not found(read)"); /* declaration check */
@@ -1886,14 +1887,14 @@ yyreduce:
     break;
 
   case 48:
-#line 321 "parser.y"
+#line 322 "parser.y"
     {
                           Trace("return");
                         }
     break;
 
   case 51:
-#line 331 "parser.y"
+#line 332 "parser.y"
     {
                           Trace("----block start----");
                           symbols.push();
@@ -1901,7 +1902,7 @@ yyreduce:
     break;
 
   case 52:
-#line 337 "parser.y"
+#line 338 "parser.y"
     {
                           Trace("----block end----");
                           symbols.dump();
@@ -1910,7 +1911,7 @@ yyreduce:
     break;
 
   case 53:
-#line 346 "parser.y"
+#line 347 "parser.y"
     {
                           Trace(" if else");
 
@@ -1919,7 +1920,7 @@ yyreduce:
     break;
 
   case 54:
-#line 352 "parser.y"
+#line 353 "parser.y"
     {
                           Trace(" if");
 
@@ -1928,7 +1929,7 @@ yyreduce:
     break;
 
   case 57:
-#line 368 "parser.y"
+#line 369 "parser.y"
     {
                           Trace("while loop");
                           if ((yyvsp[(3) - (5)].info)->type != boolType) yyerror("while condition type error");
@@ -1936,7 +1937,7 @@ yyreduce:
     break;
 
   case 58:
-#line 373 "parser.y"
+#line 374 "parser.y"
     {
                           Trace("FOR loop");
                           idInfo *info = symbols.lookup(*(yyvsp[(3) - (10)].sval));
@@ -1948,14 +1949,14 @@ yyreduce:
     break;
 
   case 59:
-#line 388 "parser.y"
+#line 389 "parser.y"
     {
                           functions.push_back(vector<idInfo>());
                         }
     break;
 
   case 60:
-#line 392 "parser.y"
+#line 393 "parser.y"
     {
                           Trace(" function invocation");
 
@@ -1976,14 +1977,14 @@ yyreduce:
     break;
 
   case 65:
-#line 423 "parser.y"
+#line 424 "parser.y"
     {
                           functions[functions.size() - 1].push_back(*(yyvsp[(1) - (1)].info));
                         }
     break;
 
   case 66:
-#line 429 "parser.y"
+#line 430 "parser.y"
     {
                           idInfo *info = symbols.lookup(*(yyvsp[(1) - (1)].sval));
                           if (info == NULL) yyerror("undeclared indentifier"); /* declaration check */
@@ -1992,14 +1993,14 @@ yyreduce:
     break;
 
   case 67:
-#line 435 "parser.y"
+#line 436 "parser.y"
     {
                             (yyval.info) = (yyvsp[(1) - (1)].info);
                         }
     break;
 
   case 68:
-#line 439 "parser.y"
+#line 440 "parser.y"
     {
                           idInfo *info = symbols.lookup(*(yyvsp[(1) - (4)].sval));
                           if (info == NULL) yyerror("undeclared identifier");
@@ -2011,7 +2012,7 @@ yyreduce:
     break;
 
   case 70:
-#line 449 "parser.y"
+#line 450 "parser.y"
     {
                           Trace("-expression");
 
@@ -2034,7 +2035,7 @@ yyreduce:
     break;
 
   case 71:
-#line 469 "parser.y"
+#line 470 "parser.y"
     {
                           Trace("expression * expression");
 
@@ -2059,7 +2060,7 @@ yyreduce:
     break;
 
   case 72:
-#line 491 "parser.y"
+#line 492 "parser.y"
     {
                           Trace("expression / expression");
 
@@ -2082,7 +2083,7 @@ yyreduce:
     break;
 
   case 73:
-#line 511 "parser.y"
+#line 512 "parser.y"
     {
                           Trace("expression + expression");
 
@@ -2105,7 +2106,7 @@ yyreduce:
     break;
 
   case 74:
-#line 531 "parser.y"
+#line 532 "parser.y"
     {
                           Trace("expression - expression");
 
@@ -2128,7 +2129,7 @@ yyreduce:
     break;
 
   case 75:
-#line 551 "parser.y"
+#line 552 "parser.y"
     {
                           Trace("expression < expression");
 
@@ -2155,7 +2156,7 @@ yyreduce:
     break;
 
   case 76:
-#line 575 "parser.y"
+#line 576 "parser.y"
     {
                           Trace("expression <= expression");
 
@@ -2182,7 +2183,7 @@ yyreduce:
     break;
 
   case 77:
-#line 599 "parser.y"
+#line 600 "parser.y"
     {
                          
                           Trace("expression == expression");
@@ -2211,7 +2212,7 @@ yyreduce:
     break;
 
   case 78:
-#line 625 "parser.y"
+#line 626 "parser.y"
     {
                           Trace("expression >= expression");
 
@@ -2238,7 +2239,7 @@ yyreduce:
     break;
 
   case 79:
-#line 649 "parser.y"
+#line 650 "parser.y"
     {
                           Trace("expression > expression");
 
@@ -2268,7 +2269,7 @@ yyreduce:
     break;
 
   case 80:
-#line 676 "parser.y"
+#line 677 "parser.y"
     {
                           Trace("expression != expression");
 
@@ -2294,7 +2295,7 @@ yyreduce:
     break;
 
   case 81:
-#line 699 "parser.y"
+#line 700 "parser.y"
     {
                           Trace("!expression");
 
@@ -2307,7 +2308,7 @@ yyreduce:
     break;
 
   case 82:
-#line 709 "parser.y"
+#line 710 "parser.y"
     {
                           Trace("expression && expression");
 
@@ -2323,7 +2324,7 @@ yyreduce:
     break;
 
   case 83:
-#line 722 "parser.y"
+#line 723 "parser.y"
     {
                           Trace("expression || expression");
 
@@ -2341,7 +2342,7 @@ yyreduce:
 
 
 /* Line 1267 of yacc.c.  */
-#line 2345 "y.tab.cpp"
+#line 2346 "y.tab.cpp"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2555,7 +2556,7 @@ yyreturn:
 }
 
 
-#line 738 "parser.y"
+#line 739 "parser.y"
 
 
 void yyerror(string s) {

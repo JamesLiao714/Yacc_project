@@ -1,0 +1,60 @@
+class example
+{
+	field static int n = 8
+	field static int Fn = 1
+	field static int FNminus1 = 1
+	field static int temp = 1
+	method public static void main(java.lang.String[])
+	max_stack 15
+	max_locals 15
+	{
+L0:
+		getstatic int example.n
+		sipush 2
+		isub
+		ifgt L1
+		iconst_0
+		goto L2
+L1:
+		iconst_1
+L2:
+		ifeq L3
+		sipush 100
+		getstatic int example.n
+		isub
+		putstatic int example.Fn
+		getstatic int example.temp
+		getstatic int example.temp
+		isub
+		ifeq L4
+		iconst_0
+		goto L5
+L4:
+		iconst_1
+L5:
+		ifeq L6
+		getstatic java.io.PrintStream java.lang.System.out
+		getstatic int example.Fn
+		ineg
+		invokevirtual void java.io.PrintStream.println(int)
+		goto L7
+L6:
+		getstatic java.io.PrintStream java.lang.System.out
+		getstatic int example.Fn
+		invokevirtual void java.io.PrintStream.println(int)
+L7:
+		getstatic int example.n
+		sipush 1
+		isub
+		putstatic int example.n
+		goto L0
+L3:
+		getstatic java.io.PrintStream java.lang.System.out
+		ldc "Result of computation: "
+		invokevirtual void java.io.PrintStream.print(java.lang.String)
+		getstatic java.io.PrintStream java.lang.System.out
+		getstatic int example.n
+		invokevirtual void java.io.PrintStream.println(int)
+		return
+	}
+}

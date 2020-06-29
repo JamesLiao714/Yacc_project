@@ -1,66 +1,48 @@
 class example
 {
-	field static int n = 8
-	field static int Fn = 1
-	field static int FNminus1 = 1
-	field static int temp
-	field static int t = 1
+	field static int c
+	method public static int add(int, int)
+	max_stack 15
+	max_locals 15
+	{
+		iload 0
+		iload 1
+		iadd
+		ireturn
+	}
 	method public static void main(java.lang.String[])
 	max_stack 15
 	max_locals 15
 	{
-L0:
-		getstatic int example.n
-		sipush 2
+		sipush 5
+		sipush 10
+		invokestatic int example.add(int, int)
+		putstatic int example.c
+		getstatic int example.c
+		sipush 10
 		isub
-		ifgt L1
+		ifgt L0
 		iconst_0
-		goto L2
-L1:
+		goto L1
+L0:
 		iconst_1
+L1:
+		ifeq L2
+		getstatic java.io.PrintStream java.lang.System.out
+		getstatic int example.c
+		ineg
+		invokevirtual void java.io.PrintStream.print(int)
+		goto L3
 L2:
-		ifeq L3
-		getstatic int example.Fn
-		putstatic int example.temp
+nop
 		getstatic java.io.PrintStream java.lang.System.out
-		ldc "temp: "
-		invokevirtual void java.io.PrintStream.print(java.lang.String)
-		getstatic java.io.PrintStream java.lang.System.out
-		getstatic int example.Fn
-		invokevirtual void java.io.PrintStream.println(int)
-		getstatic int example.Fn
-		getstatic int example.FNminus1
-		iadd
-		putstatic int example.Fn
-		getstatic java.io.PrintStream java.lang.System.out
-		ldc "FN: "
-		invokevirtual void java.io.PrintStream.print(java.lang.String)
-		getstatic java.io.PrintStream java.lang.System.out
-		getstatic int example.Fn
-		invokevirtual void java.io.PrintStream.println(int)
-		getstatic int example.temp
-		putstatic int example.FNminus1
-		getstatic java.io.PrintStream java.lang.System.out
-		ldc "FNminus1: "
-		invokevirtual void java.io.PrintStream.print(java.lang.String)
-		getstatic java.io.PrintStream java.lang.System.out
-		getstatic int example.FNminus1
-		invokevirtual void java.io.PrintStream.println(int)
-		getstatic int example.t
-		ifeq L4
-		getstatic int example.n
-		sipush 1
-		isub
-		putstatic int example.n
-L4:
-		goto L0
+		getstatic int example.c
+		invokevirtual void java.io.PrintStream.print(int)
 L3:
+nop
 		getstatic java.io.PrintStream java.lang.System.out
-		ldc "Result of computation: "
-		invokevirtual void java.io.PrintStream.print(java.lang.String)
-		getstatic java.io.PrintStream java.lang.System.out
-		getstatic int example.n
-		invokevirtual void java.io.PrintStream.println(int)
+		ldc "Hello World"
+		invokevirtual void java.io.PrintStream.println(java.lang.String)
 		return
 	}
 }

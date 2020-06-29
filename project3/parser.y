@@ -12,6 +12,8 @@
 string filename;
 ofstream out;
 
+int Opt_P = 0;
+
 int method_num = 0;
 int main_num = 0;
 
@@ -93,7 +95,7 @@ const_dec               : VAL ID ':' var_type '=' expression
                         {
                           Trace("constant declaration(type)");
 
-                          if (!isConst(*$6)) yyerror("expression != constant value"); /*const check*/
+                          if (!isConst(*$6)) yyerror("expression not constant value"); /*const check*/
                           if ($4 != $6->type) yyerror("type not match"); /*type parameter check*/
 
                           $6->flag = constVariableFlag;
@@ -116,7 +118,6 @@ var_dec                 : VAR ID ':' var_type '=' expression
                         {
                           Trace("variable declaration(VAR ID ':' var_type '=' expression )");
 
-                          if (!isConst(*$6)) yyerror("expression not constant value"); /* constant check */
                           if ($4 != $6->type) yyerror("type not match"); /* type check */
 
                           $6->flag = variableFlag;
@@ -155,9 +156,6 @@ var_dec                 : VAR ID ':' var_type '=' expression
                         | VAR ID '=' expression 
                         {
                           Trace("variable declaration (VAR ID '=' expression)");
-
-                          if (!isConst(*$4)) yyerror("expression not constant value"); /* constant check */
-
                           $4->flag = variableFlag;
                           $4->init = true;
                           if (symbols.insert(*$2, *$4) == -1) yyerror("variable redefinition"); /* symbol check */
@@ -175,7 +173,6 @@ var_dec                 : VAR ID ':' var_type '=' expression
                         | VAR ID 
                         {
                           Trace("variable declaration(VAR ID )");
-
                           idInfo *info = new idInfo();
                           info->flag = variableFlag;
                           info->type = intType;
@@ -336,7 +333,7 @@ statement               : simple
                         | loop
                         | func_invocation
                         {
-                            if($1 != NULL) yyerror("procedure invocation should not have return value"); 
+                            //if($1 != NULL) yyerror("procedure invocation should not have return value"); 
                         }
                         ;
 
@@ -428,31 +425,23 @@ block                   :
                         }
                         ;
 
+conditional             : IF '(' expression ')' 
+                        {
+                           IfStart();
+                           if ($3->type != boolType) yyerror("condition type error (if_else)");
+                        }
+                         B_or_S else_statement
+                         { 
+                           Trace("if else");
+                           IfEnd();
+                          }
+                        
 
-conditional             : IF '(' expression ')' ifStart B_or_S ELSE 
+else_statement          : 
+                        | ELSE
                         {
                           Else();
-                        }
-                          B_or_S
-                        {
-                          Trace(" if else");
-
-                          if ($3->type != boolType) yyerror("condition type error (if_else)");
-                          IfElseEnd();
-                        }
-                        | IF '(' expression ')' ifStart B_or_S
-                        {
-                          Trace(" if");
-
-                          if ($3->type != boolType) yyerror("condition type error (if)");
-                          IfEnd();
-                        }
-                        ;
-
-ifStart                 :
-                        {
-                          IfStart();
-                        }
+                        } B_or_S
 
 /*block or simple*/
 B_or_S                 : simple
@@ -478,15 +467,15 @@ loop                    : WHILE '('
                         }
                         | FOR '('
                         {
-                           ForStart();
+                           //ForStart();
                         }
                          ID '<' '-' INT_CONST TO INT_CONST
                         {
-                          ForCond();
+                          //ForCond();
                         } 
                         ')' B_or_S
                         {
-                          ForEnd();
+                          //ForEnd();
                           Trace("FOR loop");
                           idInfo *info = symbols.lookup(*$4);
                           if (info == NULL) yyerror("undeclared indentifier(for)"); /* declaration check */
@@ -787,8 +776,9 @@ expression              : ID
                              info->value.bval = $1 -> value.dval == $3 -> value.dval;
                           }
                           
-
-                          if ($1->type == intType || $1->type == boolType) CondOp(IFEQ);
+                        
+                          if ($1->type == intType || $1->type == boolType) 
+                            CondOp(IFEQ);
                           $$ = info;
                         }
                         | expression GE expression

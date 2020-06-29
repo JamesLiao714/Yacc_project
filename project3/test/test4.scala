@@ -11,15 +11,19 @@ object fib
   var FNminus1: int = 1
   var temp: int
 
-  def main () {
-    // compute the nth Fibonacci number
+  def run()
+  {
     while (n > 2) {
       temp = Fn
       Fn = Fn + FNminus1
       FNminus1 = temp
       n = n - 1
     }
-    
+  }
+
+  def main () {
+    // compute the nth Fibonacci number
+    run()
     // print result
     print ("Result of computation: ")
     println (n)

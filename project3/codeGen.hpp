@@ -311,17 +311,24 @@ void BlockEnd()
   out << "\t}" << endl;
 }
 //================if else======================
+bool flag;
 void IfStart()
 {
-  lm.pushNLabel(2);
+  flag = false;
+  lm.pushNLabel(1);
   out << "\t\tifeq L" << lm.getLabel(0) << endl;
   cout << "\t\tifeq L" << lm.getLabel(0) << endl;
 }
 
 void Else()
 {
-  out << "\t\tgoto L" << lm.getLabel(1) << endl;
-  out << "L" << lm.getLabel(0) << ":" << endl;
+  flag = true;
+  int L0 = lm.getLabel(0);
+  lm.pushNLabel(1);
+  int L1 = lm.getLabel(0);
+  out << "\t\tgoto L" << L1 << endl;
+  out << "L" << L0 << ":" << endl;
+  out << "nop" << endl;
 
   cout << "\t\tgoto L" << lm.getLabel(1) << endl;
   cout << "L" << lm.getLabel(0) << ":" << endl;
@@ -329,24 +336,22 @@ void Else()
 
 void IfEnd()
 {
-
-  out << "L" << lm.getLabel(0) << ":" << endl;
-  cout << "L" << lm.getLabel(0) << ":" << endl;
   
-  lm.popLabel();
-}
-
-void IfElseEnd()
-{
-  out << "L" << lm.getLabel(1) << ":" << endl;
-  cout << "L" << lm.getLabel(1) << ":" << endl;
-  lm.popLabel();
+  out << "L" << lm.getLabel(0) << ":" << endl;
+  out << "nop" << endl;
+  cout << "L" << lm.getLabel(0) << ":" << endl;
+  lm.popLabel();  
+  if(flag){
+    lm.popLabel();
+  }
+  flag = false;
 }
 //================while======================
 void WhileStart()
 {
   lm.pushNLabel(1);
   out << "L" << lm.getLabel(0) << ":" << endl;
+  out << "nop" << endl;
   cout << "L" << lm.getLabel(0) << ":" << endl;
 }
 
@@ -361,30 +366,7 @@ void WhileEnd()
 {
   out << "\t\tgoto L" << lm.getLabel(lm.getFlag()) << endl;
   out << "L" << lm.getLabel(3 + lm.getFlag()) << ":" << endl;
-
-  cout << "\t\tgoto L" << lm.getLabel(lm.getFlag()) << endl;
-  cout << "L" << lm.getLabel(3 + lm.getFlag()) << ":" << endl;
-  lm.popLabel();
-}
-//================for======================
-void ForStart()
-{
-  lm.pushNLabel(1);
-  out << "L" << lm.getLabel(0) << ":" << endl;
-  cout << "L" << lm.getLabel(0) << ":" << endl;
-}
-
-void ForCond()
-{
-  lm.NLabel(1);
-  out << "\t\tifeq L" << lm.getLabel(3 + lm.getFlag()) << endl;
-  cout << "\t\tifeq L" << lm.getLabel(3 + lm.getFlag()) << endl;
-}
-
-void ForEnd()
-{
-  out << "\t\tgoto L" << lm.getLabel(lm.getFlag()) << endl;
-  out << "L" << lm.getLabel(3 + lm.getFlag()) << ":" << endl;
+  out << "nop" << endl;
 
   cout << "\t\tgoto L" << lm.getLabel(lm.getFlag()) << endl;
   cout << "L" << lm.getLabel(3 + lm.getFlag()) << ":" << endl;

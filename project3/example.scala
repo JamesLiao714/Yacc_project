@@ -1,36 +1,26 @@
-/* fib.scala
- *
- * This test program computes the Nth Fibonacci number
+/*
+ * Example with Functions
  */
 
-object fib
-{
+object example {
+  // constants
+  val a = 5
+
   // variables
-  var n: int = 8
-  var Fn: int = 1
-  var FNminus1: int = 1
-  var temp: int
-  var t: boolean = true
+  var c : int
 
-  def main () {
-    // compute the nth Fibonacci number
-    while (n > 2) {
-      temp = Fn
-      print("temp: ")
-      println(Fn)
-      Fn = Fn + FNminus1
-      print("FN: ")
-      println(Fn)
-      FNminus1 = temp
-      print("FNminus1: ")
-      println(FNminus1)
-      if(t)
-        n = n - 1
-
-    }
-    
-    // print result
-    print ("Result of computation: ")
-    println (n)
+  // function declaration
+  def add (a: int, b: int) : int {
+    return a+b
+  }
+  
+  // main statements
+  def main() {
+    c = add(a, 10)
+    if (c > 10)
+      print (-c)
+    else
+      print (c)
+    println ("Hello World")
   }
 }

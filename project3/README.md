@@ -25,13 +25,13 @@ java example
 
 ### new file for code generation
 - codeGen.hpp.
-- cout to preview the java assembly.
+- cout to preview the java assembly code.
 ### parser.l
 
 - add #include "codeGen.hpp" header file
 - set `yyin` to input file stream.
 - add output file stream.
-- add code generation functions to create java assembly.
+- add code generation functions to create java assembly code.
 
 ### symbols.hpp / symbols.cpp
 

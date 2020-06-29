@@ -12,9 +12,6 @@
 string filename;
 ofstream out;
 
-int Opt_P = 0;
-int Opt_D = 0;
-
 int method_num = 0;
 int main_num = 0;
 

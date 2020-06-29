@@ -65,44 +65,6 @@ class LabelManager{
       return lStack.top().loop_flag;
     };
 };
-/*
-void ProgramStart();
-void ProgramEnd();
-void GlobalVar(string id);
-void GlobalVarWithVal(string id, int val);
-void LocalVarWithVal(int idx, int val);
-void ConstStr(string str);
-void ConstInt(int val);
-void GetGlobalVar(string id);
-void GetLocalVar(int idx);
-void SetGlobalVar(string id);
-void SetLocalVar(int idx);
-void Operator(char op);
-void CondOp(int op);
-void MainStart();
-void FuncStart(idInfo info);
-void VoidFuncEnd();
-void PrintStart2();
-void PrintStart();
-void PrintStr();
-void PrintInt();
-void PrintlnStr();
-void PrintlnInt();
-void IReturn();
-void Return();
-void CallFunc(idInfo info);
-void BlockEnd();
-void IfStart();
-void Else();
-void IfEnd();
-void IfElseEnd();
-void WhileStart();
-void WhileCond();
-void WhileEnd();
-void ForStart();
-void ForCond();
-void ForEnd();
-*/
 
 //=============================label managing=======================
 LabelManager lm;

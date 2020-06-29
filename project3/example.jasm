@@ -3,7 +3,8 @@ class example
 	field static int n = 8
 	field static int Fn = 1
 	field static int FNminus1 = 1
-	field static int temp = 1
+	field static int temp
+	field static int t = 1
 	method public static void main(java.lang.String[])
 	max_stack 15
 	max_locals 15
@@ -19,34 +20,39 @@ L1:
 		iconst_1
 L2:
 		ifeq L3
-		sipush 100
-		getstatic int example.n
-		isub
+		getstatic int example.Fn
+		putstatic int example.temp
+		getstatic java.io.PrintStream java.lang.System.out
+		ldc "temp: "
+		invokevirtual void java.io.PrintStream.print(java.lang.String)
+		getstatic java.io.PrintStream java.lang.System.out
+		getstatic int example.Fn
+		invokevirtual void java.io.PrintStream.println(int)
+		getstatic int example.Fn
+		getstatic int example.FNminus1
+		iadd
 		putstatic int example.Fn
+		getstatic java.io.PrintStream java.lang.System.out
+		ldc "FN: "
+		invokevirtual void java.io.PrintStream.print(java.lang.String)
+		getstatic java.io.PrintStream java.lang.System.out
+		getstatic int example.Fn
+		invokevirtual void java.io.PrintStream.println(int)
 		getstatic int example.temp
-		getstatic int example.temp
-		isub
+		putstatic int example.FNminus1
+		getstatic java.io.PrintStream java.lang.System.out
+		ldc "FNminus1: "
+		invokevirtual void java.io.PrintStream.print(java.lang.String)
+		getstatic java.io.PrintStream java.lang.System.out
+		getstatic int example.FNminus1
+		invokevirtual void java.io.PrintStream.println(int)
+		getstatic int example.t
 		ifeq L4
-		iconst_0
-		goto L5
-L4:
-		iconst_1
-L5:
-		ifeq L6
-		getstatic java.io.PrintStream java.lang.System.out
-		getstatic int example.Fn
-		ineg
-		invokevirtual void java.io.PrintStream.println(int)
-		goto L7
-L6:
-		getstatic java.io.PrintStream java.lang.System.out
-		getstatic int example.Fn
-		invokevirtual void java.io.PrintStream.println(int)
-L7:
 		getstatic int example.n
 		sipush 1
 		isub
 		putstatic int example.n
+L4:
 		goto L0
 L3:
 		getstatic java.io.PrintStream java.lang.System.out

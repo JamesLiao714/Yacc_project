@@ -561,8 +561,8 @@ static const yytype_uint16 yyrline[] =
      399,   405,   415,   414,   429,   428,   440,   442,   441,   447,
      448,   455,   459,   454,   469,   473,   468,   492,   491,   517,
      518,   522,   523,   527,   533,   552,   563,   572,   573,   596,
-     620,   642,   656,   679,   702,   728,   754,   784,   810,   838,
-     864,   876,   891,   907
+     620,   635,   649,   672,   695,   721,   747,   777,   803,   831,
+     857,   869,   884,   900
 };
 #endif
 
@@ -2221,7 +2221,7 @@ yyreduce:
   case 80:
 #line 621 "parser.y"
     {
-                          Trace("expression / expression");
+                           Trace("expression / expression");
 
                           if ((yyvsp[(1) - (3)].info)->type != (yyvsp[(3) - (3)].info)->type) yyerror("type not match"); /* type check */
                           if ((yyvsp[(1) - (3)].info)->type != intType && (yyvsp[(1) - (3)].info)->type != realType) yyerror("operator error"); /* operator check */
@@ -2229,14 +2229,7 @@ yyreduce:
                           idInfo *info = new idInfo();
                           info->flag = variableFlag;
                           info->type = (yyvsp[(1) - (3)].info)->type;
-                          if((yyvsp[(1) - (3)].info) -> type == intType)
-                          {
-                            info->value.ival = (yyvsp[(1) - (3)].info) -> value.ival / (yyvsp[(3) - (3)].info) -> value.ival;
-                          }
-                          else
-                          {
-                             info->value.dval = (yyvsp[(1) - (3)].info) -> value.dval / (yyvsp[(3) - (3)].info) -> value.dval;
-                          }
+                        
                           (yyval.info) = info;
                           if ((yyvsp[(1) - (3)].info)->type == intType) 
                             Operator('/');
@@ -2244,7 +2237,7 @@ yyreduce:
     break;
 
   case 81:
-#line 643 "parser.y"
+#line 636 "parser.y"
     {
                           Trace("expression % expression");
 
@@ -2261,7 +2254,7 @@ yyreduce:
     break;
 
   case 82:
-#line 657 "parser.y"
+#line 650 "parser.y"
     {
                           Trace("expression + expression");
 
@@ -2287,7 +2280,7 @@ yyreduce:
     break;
 
   case 83:
-#line 680 "parser.y"
+#line 673 "parser.y"
     {
                           Trace("expression - expression");
 
@@ -2313,7 +2306,7 @@ yyreduce:
     break;
 
   case 84:
-#line 703 "parser.y"
+#line 696 "parser.y"
     {
                           Trace("expression < expression");
 
@@ -2342,7 +2335,7 @@ yyreduce:
     break;
 
   case 85:
-#line 729 "parser.y"
+#line 722 "parser.y"
     {
                           Trace("expression <= expression");
 
@@ -2371,7 +2364,7 @@ yyreduce:
     break;
 
   case 86:
-#line 755 "parser.y"
+#line 748 "parser.y"
     {
                          
                           Trace("expression == expression");
@@ -2404,7 +2397,7 @@ yyreduce:
     break;
 
   case 87:
-#line 785 "parser.y"
+#line 778 "parser.y"
     {
                           Trace("expression >= expression");
 
@@ -2433,7 +2426,7 @@ yyreduce:
     break;
 
   case 88:
-#line 811 "parser.y"
+#line 804 "parser.y"
     {
                           Trace("expression > expression");
 
@@ -2464,7 +2457,7 @@ yyreduce:
     break;
 
   case 89:
-#line 839 "parser.y"
+#line 832 "parser.y"
     {
                           Trace("expression != expression");
 
@@ -2493,7 +2486,7 @@ yyreduce:
     break;
 
   case 90:
-#line 865 "parser.y"
+#line 858 "parser.y"
     {
                           Trace("!expression");
 
@@ -2508,7 +2501,7 @@ yyreduce:
     break;
 
   case 91:
-#line 877 "parser.y"
+#line 870 "parser.y"
     {
                           Trace("expression && expression");
 
@@ -2526,7 +2519,7 @@ yyreduce:
     break;
 
   case 92:
-#line 892 "parser.y"
+#line 885 "parser.y"
     {
                           Trace("expression || expression");
 
@@ -2545,7 +2538,7 @@ yyreduce:
     break;
 
   case 93:
-#line 908 "parser.y"
+#line 901 "parser.y"
     {
                           (yyval.info) = (yyvsp[(2) - (3)].info);
                         }
@@ -2553,7 +2546,7 @@ yyreduce:
 
 
 /* Line 1267 of yacc.c.  */
-#line 2557 "y.tab.cpp"
+#line 2550 "y.tab.cpp"
       default: break;
     }
   YY_SYMBOL_PRINT ("-> $$ =", yyr1[yyn], &yyval, &yyloc);
@@ -2767,7 +2760,7 @@ yyreturn:
 }
 
 
-#line 913 "parser.y"
+#line 906 "parser.y"
 
 
 void yyerror(string s) {

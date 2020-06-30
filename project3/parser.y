@@ -619,7 +619,7 @@ expression              : ID
                         }
                         | expression '/' expression
                         {
-                          Trace("expression / expression");
+                           Trace("expression / expression");
 
                           if ($1->type != $3->type) yyerror("type not match"); /* type check */
                           if ($1->type != intType && $1->type != realType) yyerror("operator error"); /* operator check */
@@ -627,14 +627,7 @@ expression              : ID
                           idInfo *info = new idInfo();
                           info->flag = variableFlag;
                           info->type = $1->type;
-                          if($1 -> type == intType)
-                          {
-                            info->value.ival = $1 -> value.ival / $3 -> value.ival;
-                          }
-                          else
-                          {
-                             info->value.dval = $1 -> value.dval / $3 -> value.dval;
-                          }
+                        
                           $$ = info;
                           if ($1->type == intType) 
                             Operator('/');

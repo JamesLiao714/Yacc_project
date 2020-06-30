@@ -5,9 +5,9 @@ class example
 	max_stack 15
 	max_locals 15
 	{
-		iload 1
 		iload 0
-		idiv
+		iload 1
+		imul
 		ireturn
 	}
 	method public static void main(java.lang.String[])
@@ -15,7 +15,7 @@ class example
 	max_locals 15
 	{
 		sipush 5
-		sipush 10
+		sipush 30
 		invokestatic int example.add(int, int)
 		putstatic int example.c
 		getstatic java.io.PrintStream java.lang.System.out

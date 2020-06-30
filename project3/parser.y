@@ -604,14 +604,7 @@ expression              : ID
                           info->flag = variableFlag;
                           info->type = $1->type;
 
-                          if($1 -> type == intType)
-                          {
-                            info->value.ival = $1 -> value.ival * $3 -> value.ival;
-                          }
-                          else
-                          {
-                             info->value.dval = $1 -> value.dval * $3 -> value.dval;
-                          }
+    
                           $$ = info;
 
                           if ($1->type == intType) 

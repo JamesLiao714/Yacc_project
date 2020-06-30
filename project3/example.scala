@@ -5,12 +5,12 @@ var c : int
 // procedure declaration
 def add(a:int, b:int) : int
 {
-return b/a
+return a*b
 }
 // main statements
 def main ( )
 {
-c = add(a, 10)
+c = add(a, 30)
 println (c)
 }
 }
